@@ -1,0 +1,18 @@
+# Build artifacts
+target/
+Cargo.lock
+
+# SCIP index files
+*.scip
+*.scip.json
+index.scip*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

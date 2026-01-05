@@ -1,0 +1,25 @@
+name: Call Graph
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+  workflow_dispatch:
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  callgraph:
+    uses: Beneficial-AI-Foundation/scip-callgraph/.github/workflows/generate-callgraph.yml@main
+    with:
+      github_url: https://github.com/Beneficial-AI-Foundation/libsignal_focus_dalek_lite
+      skip_verification: true
+      skip_similar_lemmas: true
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
