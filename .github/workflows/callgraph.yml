@@ -17,6 +17,7 @@ jobs:
     uses: Beneficial-AI-Foundation/scip-callgraph/.github/workflows/generate-callgraph.yml@main
     with:
       github_url: https://github.com/Beneficial-AI-Foundation/libsignal_focus_dalek_lite
+      use_rust_analyzer: true
       skip_verification: true
       skip_similar_lemmas: true
     permissions:
