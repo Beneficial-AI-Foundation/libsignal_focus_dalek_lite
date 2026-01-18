@@ -1,8 +1,21 @@
-pub use crate::backend::serial::u64::field::FieldElement51;
+use cfg_if::cfg_if;
 
-const fn field_element(element: [u64; 5]) -> FieldElement51 {
-    FieldElement51 { limbs: element }
+cfg_if! {
+    if #[cfg(curve25519_dalek_backend = "fiat")] {
+        pub use crate::backend::serial::fiat_u64::field::FieldElement51;
+
+        const fn field_element(element: [u64; 5]) -> FieldElement51 {
+            FieldElement51(fiat_crypto::curve25519_64::fiat_25519_tight_field_element(element))
+        }
+    } else {
+        pub use crate::backend::serial::u64::field::FieldElement51;
+
+        const fn field_element(element: [u64; 5]) -> FieldElement51 {
+            FieldElement51(element)
+        }
+    }
 }
+
 /// `= sqrt(i*d)`, where `i = +sqrt(-1)` and `d` is the Edwards curve parameter.
 pub const SQRT_ID: FieldElement51 = field_element([
     2298852427963285,

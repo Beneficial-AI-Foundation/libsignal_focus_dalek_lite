@@ -88,12 +88,16 @@ pub mod constants;
 // External (and internal) traits.
 pub mod traits;
 
+// All the lizard code is here, for now
+#[cfg(feature = "lizard")]
+pub mod lizard;
+
 //------------------------------------------------------------------------
 // curve25519-dalek internal modules
 //------------------------------------------------------------------------
 
 // Finite field arithmetic mod p = 2^255 - 19
-pub(crate) mod field;
+pub mod field;
 
 // Arithmetic backends (using u32, u64, etc) live here
 #[cfg(docsrs)]
